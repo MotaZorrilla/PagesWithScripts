@@ -1,0 +1,16 @@
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; 
+    background-color: rgb(211, 30, 130);
+    
+}
+.content {
+    flex: 1;
+    border: 2px;
+}
+.footer {
+    padding: 20px;
+    background-color: aqua;
+    color: aliceblue;
+}
