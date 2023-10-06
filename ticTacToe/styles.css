@@ -1,0 +1,54 @@
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    background: black;
+    overflow: hidden;
+    color: white;
+    font-family: "Courier New";
+}
+
+#title {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgb(4, 128, 0);
+    color: white;
+    font-size: xx-large;
+    margin-bottom: 20px;
+}
+
+#game .cell {
+    width: 90px;
+    height: 90px;
+    font-size: 3rem;
+    display: grid;
+    place-items: center;
+    border: 1px solid purple;
+    float: left;
+}
+
+#game {
+    width: 276px;
+    text-align: center;
+}
+
+#results {
+    position: relative;
+    top: 10px;
+    height: 1rem;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background-color: rgb(4, 128, 0);
+    color: white;
+    font-size: larger;
+}
