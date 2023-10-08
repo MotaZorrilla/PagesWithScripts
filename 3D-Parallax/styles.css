@@ -1,0 +1,137 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-top: 0.5rem;
+    background-color: white;
+    color: rgb(4, 128, 0);
+    font-size: xx-large;
+    margin-bottom: 0px;
+}
+
+.content {
+    max-width: 1500px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    text-align: right;
+    padding: 5px;
+    flex-shrink: 0;
+}
+
+.title {
+    flex-grow: 1;
+    text-align: center;
+    padding-right: 20rem;
+}
+
+.help {
+    text-align: left;
+    padding: 5px;
+    flex-shrink: 0;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
+    background-color: rgb(4, 128, 0);
+    color: white;
+    font-size: larger;
+}
+
+.footer a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+body {
+    background: linear-gradient(0deg, #6139a5 0%, #4570df 100%);
+    height: 100vh;
+    font-family: monospace;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.top {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.perspective {
+    width: 100%;
+    perspective: 1000px;
+}
+
+.contenido {
+    display: flex;
+}
+
+.card {
+    width: 300px;
+    height: 420px;
+    margin: auto;
+    box-shadow: 0 70px 60px -60px #110f0f;
+    transform-style: preserve-3d;
+    transition: transform 0.05s linear;
+} 
+
+.card .thumb {
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+}
+
+.card .thumb::after {
+    background: inherit;
+    content: '';
+    display: block;
+    position: absolute;
+    left: -60px;
+    top: 40px;
+    width: 100%;
+    height: 110%;
+    z-index: -1;
+    filter: blur(55px);
+} 
+
+.card h2 {
+    position: absolute;
+    top: 0;
+    left: -60px;
+    font-size: 40px;
+    font-weight: 100;
+    transform: translateZ(80px);
+}
+
+.card span {
+    position: absolute;
+    bottom: 40px;
+    right: -280px;
+    font-size: 35px;
+    font-weight: 400;
+    transform: translateZ(35px);
+}
+
+img {
+    margin: auto;
+    display: block;
+}
+

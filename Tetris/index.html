@@ -27,53 +27,67 @@
         <div class="content">
             <div class="logo">
                 <a href="https://motazorrilla.com">
-                    <img class="logo" src="assets/Motazorrilla.png" alt="" width="250" />
+                    <img class="logo" src="assets/images/Motazorrilla.png" alt="" width="250" />
                 </a>
             </div>
             <div class="title">
                 TETRIS
             </div>
             <div class="help">
-                <img id="modal" src="assets/Questions.png" alt="" height="30" />
-                <dialog id="my-dialog">
+                <img id="imageModalQuestions" src="assets/images/Questions.png" alt="" height="30" />
+                <dialog id="questionsDialog">
                     <div class="modal">
-                    <button id="close" type="reset">X</button>
-                    <h2>Tetris: Un Juego de Bloques Adictivo</h2>
-                    <p>
-                        Tetris es un juego de bloques en el que el jugador debe rotar y mover bloques que caen para
-                        formar líneas completas.<br>
-                        Si una línea completa se forma, desaparece, lo que otorga al jugador puntos.<br> 
-                        El objetivo del juego es mantener la menor cantidad de líneas posible.<br><br>
+                        <button id="closeQuestions" type="reset">X</button>
+                        <h2>Tetris: Un Juego de Bloques Adictivo</h2>
+                        <p>
+                            Tetris es un juego de bloques en el que el jugador debe rotar y mover bloques que caen para
+                            formar líneas completas.<br>
+                            Si una línea completa se forma, desaparece, lo que otorga al jugador puntos.<br>
+                            El objetivo del juego es mantener la menor cantidad de líneas posible.<br><br>
 
-                        <span style="font-weight: bold;">Reglas básicas:</span><br><br>
+                            <span style="font-weight: bold;">Reglas básicas:</span><br><br>
 
-                        * El jugador debe rotar y mover bloques que caen para formar líneas completas.<br>
-                        * Si una línea completa se forma, desaparece, lo que otorga al jugador puntos.<br><br>
+                            * El jugador debe rotar y mover bloques que caen para formar líneas completas.<br>
+                            * Si una línea completa se forma, desaparece, lo que otorga al jugador puntos.<br><br>
 
-                        <span style="font-weight: bold;">Controles:</span><br><br>
+                            <span style="font-weight: bold;">Controles:</span><br><br>
 
-                        <span style="font-weight: bold;">Tecla arriba:</span>     Rota el bloque 90 grados en el sentido de las agujas del reloj.<br>
-                        <span style="font-weight: bold;">Tecla abajo:</span>      Hace caer el bloque una fila.<br>
-                        <span style="font-weight: bold;">Tecla izquierda:</span>  Mueve el bloque una columna hacia la izquierda.<br>
-                        <span style="font-weight: bold;">Tecla derecha:</span>    Mueve el bloque una columna hacia la derecha.<br>
-                        <span style="font-weight: bold;">Barra:</span>            Hace caer el bloque rápidamente.<br><br>
+                            <span style="font-weight: bold;">Tecla arriba:</span> Rota el bloque 90 grados en el sentido
+                            de las agujas del reloj.<br>
+                            <span style="font-weight: bold;">Tecla abajo:</span> Hace caer el bloque una fila.<br>
+                            <span style="font-weight: bold;">Tecla izquierda:</span> Mueve el bloque una columna hacia
+                            la izquierda.<br>
+                            <span style="font-weight: bold;">Tecla derecha:</span> Mueve el bloque una columna hacia la
+                            derecha.<br>
+                            <span style="font-weight: bold;">Barra:</span> Hace caer el bloque rápidamente.<br><br>
 
-                        <span style="font-weight: bold;">Consejos:</span><br><br>
+                            <span style="font-weight: bold;">Consejos:</span><br><br>
 
-                        Intenta mantener los bloques alineados para formar líneas completas.<br>
-                        No tengas miedo de rotar los bloques.<br>
-                        Prueba a usar la tecla barra para hacer caer el bloque rápidamente.
-                    </p>
-                </div>
+                            Intenta mantener los bloques alineados para formar líneas completas.<br>
+                            No tengas miedo de rotar los bloques.<br>
+                            Prueba a usar la tecla barra para hacer caer el bloque rápidamente.
+                        </p>
+                    </div>
                 </dialog>
-                <img class="muted" src="assets/muted.png" alt="" height="30" />
+                <img class="muted" src="assets/images/muted.png" alt="" height="30" />
             </div>
         </div>
     </header>
     <main>
         <div class="game_board_wrap">
-            <img class="logo" src="assets/tetris.png" alt="" width="250" />
+            <img class="logo" src="assets/images/tetris.png" alt="" width="250" />
             <div id="game_board"></div>
+            <dialog id="gameOverDialog">
+                <div class="modal">
+                    <button id="closeGameOver" type="reset">X</button>
+                    <img class="logo" src="assets/images/gameOver.png" alt="" width="250" />
+                    <h2>Perdiste</h2>
+                    <p>
+                        ¿quieres jugar una vez mas?
+                    </p>
+                    <button id="reset" type="reset">¡Volver a jugar!</button>
+                </div>
+            </dialog>
         </div>
     </main>
     <footer class="footer">

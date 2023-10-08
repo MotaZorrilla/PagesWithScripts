@@ -236,7 +236,7 @@ body {
 .glitch2:before {
     left: -1px;
     text-shadow: 3px 0 #00f;
-    animation: noise-anim-2 7s ease-out  ;
+    animation: noise-anim-2 1s ease-out  infinite;
 }
 
 .glitch:after,

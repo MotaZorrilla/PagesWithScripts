@@ -1,33 +1,81 @@
+let gameOver = false;
+// help
+const modalQuestions = document.getElementById("questionsDialog");
+const closeQuestionsButton = document.getElementById("closeQuestions");
+
+document.getElementById("imageModalQuestions").addEventListener("click", () => {
+    modalQuestions.showModal();
+});
+closeQuestionsButton.addEventListener("click", function () {
+    modalQuestions.close();
+});
+
+// game Over
+const modalGameOver = document.getElementById("gameOverDialog");
+const closeGameOverButton = document.getElementById("closeGameOver");
+const reset = document.getElementById("reset");
+
+closeGameOverButton.addEventListener("click", function () {
+    modalGameOver.close();
+});
+
+reset.addEventListener("click", function () {
+    location.reload();
+    modalGameOver.close();
+});
+
+// sounds
+const bgm = document.createElement("audio");
+const breakSound = document.createElement("audio");
+const drop = document.createElement("audio");
+const lose = document.createElement("audio");
+const sound = document.querySelector(".muted");
+
+lose.setAttribute("src", "./assets/sounds/sadTrombone.mp3");
+lose.muted = true;
+
+bgm.setAttribute("src", "./assets/sounds/tetris.mp3");
+bgm.muted = true;
+bgm.setAttribute("loop", true);
+
+breakSound.setAttribute("src", "./assets/sounds/Whoosh.mp3");
+breakSound.muted = true;
+
+drop.setAttribute("src", "./assets/sounds/drop.mp3");
+drop.muted = true;
+
+// sound init
+sound.addEventListener("click", () => {
+    if (bgm.muted) {
+        bgm.play();
+        bgm.muted = false;
+        drop.muted = false;
+    } else {
+        bgm.pause();
+        bgm.muted = true;
+        drop.muted = true;
+    }
+});
+
+//Generación de fondo dinámico
+let angulo_fondo = Math.random() * 360;
+let tono_fondo = Math.random() * 360;
+setInterval(() => {
+    document.body.style.background = `linear-gradient(
+                ${angulo_fondo}deg, 
+                hsl(${tono_fondo},100%,50%),
+                hsl(${tono_fondo},100%,20%)
+            )`
+    angulo_fondo += Math.random();
+    tono_fondo += Math.random();
+}, 100);
+
 // Game board setup
 const BOARD_WIDTH = 10;
 const BOARD_HEIGHT = 20;
 const board = [];
-const bgm = document.createElement("audio");
-const breakSound = document.createElement("audio");
-const drop = document.createElement("audio");
-const sound = document.querySelector(".muted");
+
 let rotatedShape;
-
-const modal = document.getElementById("my-dialog");
-const closeButton = document.getElementById("close");
-
-document.getElementById("modal").addEventListener("click", () => {
-    modal.showModal();
-});
-closeButton.addEventListener("click", function () {
-    modal.close();
-});
-
-bgm.setAttribute("src", "./assets/tetris.mp3");
-bgm.muted = true;
-bgm.setAttribute("loop", true);
-// bgm.play();
-
-breakSound.setAttribute("src", "./assets/Whoosh.mp3");
-breakSound.muted = true;
-
-drop.setAttribute("src", "./assets/drop.mp3");
-drop.muted = true;
 
 // init board
 for (let row = 0; row < BOARD_HEIGHT; row++) {
@@ -185,32 +233,50 @@ function canTetrominoRotate() {
 
 // Lock the tetromino in place
 function lockTetromino() {
-    // Add the tetromino to the board
-    for (let i = 0; i < currentTetromino.shape.length; i++) {
-        for (let j = 0; j < currentTetromino.shape[i].length; j++) {
-            if (currentTetromino.shape[i][j] !== 0) {
-                let row = currentTetromino.row + i;
-                let col = currentTetromino.col + j;
-                board[row][col] = currentTetromino.color;
+    if (!gameOver) {
+        console.log(gameOver);
+        // Add the tetromino to the board
+        for (let i = 0; i < currentTetromino.shape.length; i++) {
+            for (let j = 0; j < currentTetromino.shape[i].length; j++) {
+                if (currentTetromino.shape[i][j] !== 0) {
+                    let row = currentTetromino.row + i;
+                    let col = currentTetromino.col + j;
+                    board[row][col] = currentTetromino.color;
+                }
             }
         }
-    }
 
-    // Check if any rows need to be cleared
-    let rowsCleared = clearRows();
-    if (rowsCleared > 0) {
-        // updateScore(rowsCleared);
-    }
+        // Check if any rows need to be cleared
+        let rowsCleared = clearRows();
+        if (rowsCleared > 0) {
+            // updateScore(rowsCleared);
+        }
 
-    // Create a new tetromino
-    // Current tetromino
-    currentTetromino = randomTetromino();
+        if (isGameOver()) {
+            // Acciones para Game Over
+            bgm.muted = true;
+            breakSound.muted = true;
+            drop.muted = true;
+            lose.muted = true;
+            sound.muted = true;
+            modalGameOver.showModal();
+            lose.play();
+            lose.muted = false;
+            gameOver = true;
+            console.log(gameOver);
+            return;
+        }
+
+        // Create a new tetromino
+        // Current tetromino
+        currentTetromino = randomTetromino();
+    }
 }
 
 function clearRows() {
     let rowsCleared = 0;
 
-    // 아래에서부터 검사하면서 완전한 줄을 찾아서 지웁니다.
+    // "Elimina la línea completa al examinarla desde abajo."
     for (let y = BOARD_HEIGHT - 1; y >= 0; y--) {
         let rowFilled = true;
 
@@ -270,6 +336,8 @@ function rotateTetromino() {
 
     // Check if the rotated tetromino can be placed
     if (canTetrominoRotate()) {
+        drop.muted = false;
+        drop.play();
         eraseTetromino();
         currentTetromino.shape = rotatedShape;
         drawTetromino();
@@ -280,6 +348,7 @@ function rotateTetromino() {
 
 // Move the tetromino
 function moveTetromino(direction) {
+
     let row = currentTetromino.row;
     let col = currentTetromino.col;
     if (direction === "left") {
@@ -316,7 +385,6 @@ function moveTetromino(direction) {
 
 drawTetromino();
 setInterval(moveTetromino, 500);
-
 document.addEventListener("keydown", handleKeyPress);
 
 function handleKeyPress(event) {
@@ -340,19 +408,6 @@ function handleKeyPress(event) {
             break;
     }
 }
-
-// sound init
-sound.addEventListener("click", () => {
-    if (bgm.muted) {
-        bgm.play();
-        bgm.muted = false;
-        drop.muted = false;
-    } else {
-        bgm.pause();
-        bgm.muted = true;
-        drop.muted = true;
-    }
-});
 
 function dropTetromino() {
     let row = currentTetromino.row;
@@ -426,4 +481,18 @@ function moveGhostTetromino() {
     }
 
     drawGhostTetromino();
+}
+
+function isGameOver() {
+    for (let i = 0; i < currentTetromino.shape.length; i++) {
+        for (let j = 0; j < currentTetromino.shape[i].length; j++) {
+            if (currentTetromino.shape[i][j] !== 0) {
+                let row = currentTetromino.row + i;
+                if (row <= 0) {
+                    return true; // Game Over
+                }
+            }
+        }
+    }
+    return false; // No Game Over
 }
