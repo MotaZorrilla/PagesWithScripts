@@ -54,29 +54,5 @@ document.addEventListener('mousemove', function (e) {
             });
         }
     });
-
-
-
-    console.log('wx:', wx);
-    console.log('wy:', wy);
-    console.log('x:', x);
-    console.log('y:', y);
-    console.log('xdeg:', xdeg);
-    console.log('ydeg:', ydeg);
-    console.log('WrapperX:', wrapperX);
-    console.log('WrapperY:', wrapperY);
-    console.log('nearWrapperX:', nearWrapperX);
-    console.log('nearWrapperY:', nearWrapperY);
-
-
-
-
-
-
-
-
-
-
-
 });
 
