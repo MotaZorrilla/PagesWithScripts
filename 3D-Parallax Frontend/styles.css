@@ -75,15 +75,17 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
+
 #wrapper {
     overflow: hidden;
     position: absolute;
-    width: 1500px;
-    height: 800px;
+    width: 800px;
+    height: 400px; /* Ajusta la altura según tus necesidades */
     z-index: 10;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    border-radius: 25px;
 }
 
 #wrapper div {
@@ -93,30 +95,40 @@ body {
 }
 
 .p1 {
-    width: 1776px;
-    height: 1183px;
+    width: 888px;
+    height: 591px;
     z-index: 6;
-    background-image: url('images/fondo.jpg');  /* Verifica la ruta y el nombre del archivo */
-    left: -89px;
-    top: -191px;
+    background-image: url('images/fondo.jpg');
+    left: -44px;
+    top: -95px;
+    opacity: 1;
 }
 
 .p2 {
-    width: 927px;
-    height: 854px;
+    width: 463px;
+    height: 427px;
     z-index: 8;
-    background-image: url('images/part1.png');  /* Verifica la ruta y el nombre del archivo */
-    left: -83px;
-    top: 169px;
+    background-image: url('images/part1.png');
+    left: -42px;
+    top: 84px;
 }
 
 .p3 {
-    width: 1082px;
-    height: 729px;
+    width: 541px;
+    height: 364px;
     z-index: 10;
-    background-image: url('images/part2.png');  /* Verifica la ruta y el nombre del archivo */
-    left: 718px;
-    top: 136px;
+    background-image: url('images/part2.png');
+    left: 359px;
+    top: 68px;
+}
+
+.p4 {
+    width: 125px;
+    height: 13px;
+    z-index: 12;
+    background-image: url('images/MotaZorrilla.png');
+    left: 359px;
+    top: 68px;
 }
 
 .letra {
