@@ -11,7 +11,7 @@
 }
 
 .content {
-    max-width: 1500px;
+    max-width: 1200px;
     margin: auto;
     display: flex;
     justify-content: space-between;
@@ -43,7 +43,7 @@
     max-width: 500px;
 }
 
-#closeQuestions, #closeGameOver {
+.close {
     background-color: red;
     border-radius: 20%;
     top: 10px;
@@ -56,8 +56,8 @@
     border-radius: 10px;
     color: white;
     background-color: purple;
-    display: block; 
-    font-weight: bold; 
+    display: block;
+    font-weight: bold;
     cursor: pointer;
 }
 
@@ -89,15 +89,27 @@ body {
     padding: 0;
 }
 
+/* Añade esta regla CSS para centrar el logo de Tetris */
+.game_board_wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #game_board {
     width: 240px;
     height: 480px;
     border: 5px solid #3e5eba;
     margin: 0 auto;
     position: relative;
-    background: 
-    repeating-linear-gradient(rgba(22, 28, 67, 0.8), rgba(22, 28, 67, 0.8) 20px, rgba(23, 27, 63, 0.8) 20px, rgba(23, 27, 63, 0.8) 40px);
+    background:
+        repeating-linear-gradient(rgba(22, 28, 67, 0.8), rgba(22, 28, 67, 0.8) 20px, rgba(23, 27, 63, 0.8) 20px, rgba(23, 27, 63, 0.8) 40px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.game_container {
+    display: flex;
+    gap: 20px;
 }
 
 .block {
@@ -115,3 +127,113 @@ body {
     position: absolute;
     box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.2);
 }
+
+.Levels {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centra los elementos horizontalmente */
+    justify-content: center;
+    /* Centra los elementos verticalmente */
+    gap: 25px;
+    margin-top: 30px;
+}
+
+#game_info {
+    border: 5px solid #3e5eba;
+    width: 220px;
+    height: 460px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color: #333333;
+}
+
+#score,
+#level,
+#lives {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#score {
+    color: #4CAF50;
+    /* Color verde */
+}
+
+#level {
+    color: #2196F3;
+    /* Color azul */
+}
+
+#lives {
+    color: #ff0000;
+}
+
+/* Quita los bordes de los botones de los niveles */
+#buttomEasy,
+#buttomNormal,
+#buttomHard {
+    border: none;
+    cursor: pointer;
+}
+
+/* Agrega un efecto de campana suave al hacer hover en los botones de los niveles */
+#buttomEasy:hover,
+#buttomNormal:hover,
+#buttomHard:hover {
+    transform: scale(1);
+    /* Restaura la escala original */
+    animation: rotateInfinite 0.8s infinite ease-in-out;
+    /* Agrega la animación en bucle */
+    /* transition: transform 0.3s ease, background-color 0.3s ease; Agrega una transición suave */
+}
+
+@keyframes rotateInfinite {
+    0% {
+        transform: scale(1) rotateZ(5deg);
+    }
+
+    20% {
+        transform: scale(1) rotateZ(-4deg);
+    }
+
+    40% {
+        transform: scale(1) rotateZ(3deg);
+    }
+
+    50% {
+        transform: scale(1) rotateZ(-2deg);
+    }
+
+    60% {
+        transform: scale(1) rotateZ(0deg);
+    }
+
+    100% {
+        transform: scale(1) rotateZ(0deg);
+    }
+}
+
+h2 {
+    color: #333;
+  }
+
+  #top-scores, #recent-scores, #difficulty-levels {
+    margin-top: 10px;
+  }
+
+  .score-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+  }
+

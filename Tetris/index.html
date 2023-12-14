@@ -34,10 +34,25 @@
                 TETRIS
             </div>
             <div class="help">
+                <img id="imageModalLevels" src="assets/images/niveles.png" alt="" height="30" />
+                <dialog id="selectLevel">
+                    <div class="modal">
+                        <button id="closeLevels" class="close" type="reset">X</button>
+                        <img class="logo" src="assets/images/tetris.png" alt="" width="250" />
+                        <div class="Levels">
+                            <div><button id="buttomEasy" type="button"><img src="assets/images/nivel-facil.png" alt=""
+                                        height="60" /></div></button>
+                            <div><button id="buttomNormal" type="button"><img src="assets/images/nivel-normal.png"
+                                        alt="" height="30" /></div></button>
+                            <div><button id="buttomHard" type="button"><img src="assets/images/nivel-dificil.png" alt=""
+                                        height="40" /></div></button>
+                        </div>
+                    </div>
+                </dialog>
                 <img id="imageModalQuestions" src="assets/images/Questions.png" alt="" height="30" />
                 <dialog id="questionsDialog">
                     <div class="modal">
-                        <button id="closeQuestions" type="reset">X</button>
+                        <button id="closeQuestions" class="close" type="reset">X</button>
                         <h2>Tetris: Un Juego de Bloques Adictivo</h2>
                         <p>
                             Tetris es un juego de bloques en el que el jugador debe rotar y mover bloques que caen para
@@ -76,10 +91,53 @@
     <main>
         <div class="game_board_wrap">
             <img class="logo" src="assets/images/tetris.png" alt="" width="250" />
-            <div id="game_board"></div>
+            <div class="game_container">
+                <div id="game_board"></div>
+                <div id="game_info">
+                    <div style="display: flex; gap: 10px">
+                        <div id="score">Score: 0</div>
+                        <div id="level">Level: 1</div>
+                        <div id="lives">vidas: 3</div>
+                    </div>
+                    <h2>top-scores:</h2>
+                    <div id="top-scores">
+                        <div class="score-item">
+                            <span>Oro</span>
+                            <span>5000 puntos</span>
+                        </div>
+                        <div class="score-item">
+                            <span>Plata</span>
+                            <span>4500 puntos</span>
+                        </div>
+                        <div class="score-item">
+                            <span>Bronce</span>
+                            <span>4000 puntos</span>
+                        </div>
+                    </div>
+                    <div id="recent-scores">
+                        <div class="score-item">
+                            <span>Bronce</span>
+                            <span>3000 puntos</span>
+                        </div>
+                        <div class="score-item">
+                            <span>Jugador 5</span>
+                            <span>2500 puntos</span>
+                        </div>
+                        <!-- Agrega más elementos según sea necesario -->
+                    </div>
+                    <h2>Nivel:</h2>
+                    <div id="difficulty-levels">
+                        <div class="level-item">
+                            <span>Nivel Fácil - Primer Nivel</span>
+                            <span>100 puntos</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
             <dialog id="gameOverDialog">
                 <div class="modal">
-                    <button id="closeGameOver" type="reset">X</button>
+                    <button id="closeGameOver" class="close" type="reset">X</button>
                     <img class="logo" src="assets/images/gameOver.png" alt="" width="250" />
                     <h2>Perdiste</h2>
                     <p>

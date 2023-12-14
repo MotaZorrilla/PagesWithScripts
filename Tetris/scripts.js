@@ -1,7 +1,48 @@
 let gameOver = false;
 // help
+const modalLevels = document.getElementById("selectLevel");
+const closeLevelsButton = document.getElementById("closeLevels");
 const modalQuestions = document.getElementById("questionsDialog");
 const closeQuestionsButton = document.getElementById("closeQuestions");
+
+modalLevels.showModal();
+
+document.getElementById("imageModalLevels").addEventListener("click", () => {
+    modalLevels.showModal();
+});
+closeLevelsButton.addEventListener("click", function () {
+    modalLevels.close();
+});
+
+// Lógica para seleccionar el nivel y ajustar el intervalo
+let speed = 0;
+let lives = 3; // Inicializar el número de vidas
+let score = 0;
+let level = 1;
+let levelEasy = document.getElementById("buttomEasy");
+let levelNormal = document.getElementById("buttomNormal")
+let levelHard = document.getElementById("buttomHard")
+let isEasyMode = false;
+
+levelEasy.addEventListener('click', () => {
+    speed = 700;
+    isEasyMode = true;
+    modalLevels.close();
+    setInterval(moveTetromino, speed);
+});
+
+levelNormal.addEventListener('click', () => {
+    speed = 500;
+    modalLevels.close();
+    setInterval(moveTetromino, speed);
+});
+
+levelHard.addEventListener('click', () => {
+    speed = 100;
+    modalLevels.close();
+    console.log('dificil');
+    setInterval(moveTetromino, speed);
+});
 
 document.getElementById("imageModalQuestions").addEventListener("click", () => {
     modalQuestions.showModal();
@@ -35,7 +76,8 @@ lose.setAttribute("src", "./assets/sounds/sadTrombone.mp3");
 lose.muted = true;
 
 bgm.setAttribute("src", "./assets/sounds/tetris.mp3");
-bgm.muted = true;
+// bgm.muted = true;
+bgm.play();
 bgm.setAttribute("loop", true);
 
 breakSound.setAttribute("src", "./assets/sounds/Whoosh.mp3");
@@ -249,10 +291,25 @@ function lockTetromino() {
         // Check if any rows need to be cleared
         let rowsCleared = clearRows();
         if (rowsCleared > 0) {
-            // updateScore(rowsCleared);
+            score += 10 * rowsCleared;
+            document.getElementById("score").innerText = "Score: " + score;
+
+            // Incrementar nivel cada 100 puntos
+            if (score % 50 === 0) {
+                level++;
+                document.getElementById("level").innerText = "Level: " + level;
+                // speed /= score*10;
+                // console.log(speed, level);
+                // clearInterval(interval);
+                // setInterval(moveTetromino, speed)
+            }
         }
 
-        if (isGameOver()) {
+        // Verificar si hay vidas disponibles
+        if (lives > 0) {
+            // Create a new tetromino
+            currentTetromino = randomTetromino();
+        } else {
             // Acciones para Game Over
             bgm.muted = true;
             breakSound.muted = true;
@@ -266,10 +323,6 @@ function lockTetromino() {
             console.log(gameOver);
             return;
         }
-
-        // Create a new tetromino
-        // Current tetromino
-        currentTetromino = randomTetromino();
     }
 }
 
@@ -384,7 +437,6 @@ function moveTetromino(direction) {
 }
 
 drawTetromino();
-setInterval(moveTetromino, 500);
 document.addEventListener("keydown", handleKeyPress);
 
 function handleKeyPress(event) {
@@ -473,14 +525,16 @@ function canGhostTetrominoMove(rowOffset, colOffset) {
 }
 
 function moveGhostTetromino() {
-    eraseGhostTetromino();
+    if (isEasyMode) {
+        eraseGhostTetromino();
 
-    currentGhostTetromino = { ...currentTetromino };
-    while (canGhostTetrominoMove(1, 0)) {
-        currentGhostTetromino.row++;
+        currentGhostTetromino = { ...currentTetromino };
+        while (canGhostTetrominoMove(1, 0)) {
+            currentGhostTetromino.row++;
+        }
+
+        drawGhostTetromino();
     }
-
-    drawGhostTetromino();
 }
 
 function isGameOver() {
@@ -495,4 +549,15 @@ function isGameOver() {
         }
     }
     return false; // No Game Over
+}
+
+function restartGame() {
+    lives = 3;
+    score = 0;
+    level = 1;
+    isEasyMode = false;
+    gameOver = false;
+
+    document.getElementById("score").innerText = "Score: " + score;
+    document.getElementById("level").innerText = "Level: " + level;
 }
