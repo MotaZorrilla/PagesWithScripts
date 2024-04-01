@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    background: black;
+    overflow: hidden;
+}
+
+#title {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgb(4, 128, 0);
+    color: white;
+    font-size: xx-large;
+    margin-bottom: 20px;
+}
+
+
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background-color: rgb(4, 128, 0);
+    color: white;
+    font-size: larger;
+}
